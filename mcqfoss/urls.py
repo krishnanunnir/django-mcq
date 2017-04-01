@@ -15,8 +15,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from mcqfoss.views import *
+from exam.views import *
 urlpatterns = [
-    url(r'^admin/$', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$',hello),
-    url(r'^currenttime/(\d+)/$',current_time)
+    url(r'^currenttime/(\d+)/$',current_time),
+    url(r'^$',tests)
 ]
