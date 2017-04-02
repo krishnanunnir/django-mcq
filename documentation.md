@@ -5,36 +5,35 @@ __#Created By__
 
 Using an sqlite database temporarily.  
 
-##Documentation for MCQ
+## Documentation for MCQ
 
 * Started the project mcqfoss.
 * Created an app "exam"
 * Added exam to list of installed apps in Settings.
 * Added the models in models.py of exam. They are
 
-##Questions
+## Questions
 
---------------------------------------------------------------
+
 | question_no     | question_text |   answer   |   options   |
 |-----------------|---------------|------------|-------------|
 | Integer         | Character     | Character  | Foreign Key |
---------------------------------------------------------------
 
-##Tests
 
--------------------------------------------------------------------------------------------
+## Tests
+
+
 | test_title | teacher   |  date_of_exam   |  start_time  | end_time |     questions      |
 -------------|-----------|-----------------|--------------|----------|--------------------|
 | Character  | Character |       Date      |  Time        |  Time    | Many to Many Field |
--------------------------------------------------------------------------------------------
 
-##Options
 
-----------------
+## Options
+
 | option_value |
---------------
+|--------------|
 |  Character   |
-----------------
+
 
 * Migrated the data to database.
 * A template folder was added in settings. "template" in root  of the project.
