@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Quiz</title>
+	 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Droid+Serif|Merriweather|Slabo+27px" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+	#question{
+		font-size: 24px;
+		font-weight: 500;
+		font-family: 'Droid Serif', serif;
+	}
+	#title{
+		text-align: center;
+		font-family: 'Merriweather', serif;
+	}
+	#option{
+		font-size: 21px;
+		font-family: 'Lato', sans-serif;
+		color:#7C7C7C;
+	}
+	input[type=radio]:checked + #option{
+		font-family: 'Lato', sans-serif;
+		color: black;
+	}
+	</style>
+	</head>
+<body>
+<form>
+	<form>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<h1 id ="title">Problem</h1><br><br>
+        {% for test_object in test_item %}
+          {% for question in test_object.questions.all %}
+    				<p id="question"><em>{{question.question_no}}.{{question.question_text}}</em></p>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_one}}</span><br>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_two}}</span><br>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_three}} </span><br>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_four}}</span>
+    				<br>
+  					<br>
+            {% endfor %}
+          {% endfor %}
+			</div>
+		</div>
+	</form>
+</form>
+</body>
+</html>

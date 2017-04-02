@@ -1,5 +1,5 @@
 <ul>
   {% for test_item in test_items %}
-  <li>{{test_item.test_title}}</li>
+  <li><a href="tests/{{test_item.test_title}}" >{{test_item.test_title}}</a></li>
   {% endfor %}
 </ul>

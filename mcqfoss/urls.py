@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$',hello),
     url(r'^currenttime/(\d+)/$',current_time),
-    url(r'^$',tests)
+    url(r'^$',tests),
+    url(r'^tests/(\w+)/$',test_display),
 ]
