@@ -40,10 +40,10 @@
         {% for test_object in test_item %}
           {% for question in test_object.questions.all %}
     				<p id="question"><em>{{question.question_no}}.{{question.question_text}}</em></p>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_one}}</span><br>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_two}}</span><br>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_three}} </span><br>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option">  {{question.option_four}}</span>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_one}}</span><br>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_two}}</span><br>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_three}} </span><br>
+    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_four}}</span>
     				<br>
   					<br>
             {% endfor %}
