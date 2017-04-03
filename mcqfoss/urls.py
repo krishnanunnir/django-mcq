@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^hello/$',hello),
     url(r'^currenttime/(\d+)/$',current_time),
     url(r'^$',tests),
-    url(r'^tests/(\w+)/$',test_display),
+    url(r'^tests/(\w+)/(\d+)$',test_display),
 ]

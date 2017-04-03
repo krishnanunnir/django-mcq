@@ -29,28 +29,34 @@
 		font-family: 'Lato', sans-serif;
 		color: black;
 	}
+	#submit_button{
+		width: 100%;
+	}
 	</style>
 	</head>
 <body>
-<form>
+<form method= "post" class = "post-form" action = ""> {%csrf_token%}
 	<form>
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<h1 id ="title">Problem</h1><br><br>
-        {% for test_object in test_item %}
-          {% for question in test_object.questions.all %}
+          {% for question in test_item %}
     				<p id="question"><em>{{question.question_no}}.{{question.question_text}}</em></p>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_one}}</span><br>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_two}}</span><br>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_three}} </span><br>
-    				&nbsp&nbsp<input type="radio" name="optionq1"><span id="option"> {{question.option_four}}</span>
-    				<br>
-  					<br>
-            {% endfor %}
-          {% endfor %}
+						<div id = "option">
+    					&nbsp&nbsp<input type="radio" name="options{{question.question_no}}"> {{question.option_one}}<br>
+    					&nbsp&nbsp<input type="radio" name="options{{question.question_no}}"> {{question.option_two}}<br>
+    					&nbsp&nbsp<input type="radio" name="options{{question.question_no}}"> {{question.option_three}}<br>
+    					&nbsp&nbsp<input type="radio" name="options{{question.question_no}}"> {{question.option_four}}<br><br>
+						</div>
+					</div>
 			</div>
-		</div>
-	</form>
+	  <div class="row">
+			<div class="col-md-2 col-md-offset-4">
+				<input type="submit" class="btn btn-primary" value = "Next" id="submit_button">
+			</div>
+	 </div>
+ 	{% endfor %}
+
 </form>
 </body>
 </html>
