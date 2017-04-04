@@ -1,5 +1,5 @@
 from django.db import models
-
+from authentication.models import *
 # Create your models here.
 
 
@@ -23,4 +23,6 @@ class Test(models.Model):
     date_of_exam = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    max_score = models.IntegerField(blank=True, null=True)
+    permitted_for = models.ForeignKey( 'authentication.Department',default = 0)
     questions = models.ManyToManyField(Question,blank=True, null=True)
