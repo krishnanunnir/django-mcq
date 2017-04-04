@@ -28,14 +28,13 @@ Using an sqlite database temporarily.
 | Character  | Character |       Date      |  Time        |  Time    | Many to Many Field |
 
 
-## Options
 
-| option_value |
-|--------------|
-|  Character   |
 
 
 * Migrated the data to database.
 * A template folder was added in settings. "template" in root  of the project.
 * Added a  controller function in view(tests). It returns list of all elements in Tests model.
 * Created a template tests.html renders the view tests.
+* Display all the tests in tests.html.
+* Created a template question_pages.html.Using URI offsetting to go to a test and particular question.
+* question_pages.html display the first question. 

@@ -8,8 +8,7 @@ def tests(request):
 
 def test_display(request,test_url,question_number):
     if request.method == 'POST':
-        x = request.POST.get('options2')
-        return HttpResponse(x)
+        return render(request,'post_check.html',{'post_items':request.POST.items()})
     else:
         first_filter = Test.objects.filter(test_title = test_url)
         test_item = first_filter[0].questions.filter(question_no = question_number)

@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^currenttime/(\d+)/$',current_time),
     url(r'^$',tests),
     url(r'^tests/(\w+)/(\d+)$',test_display),
+
 ]
