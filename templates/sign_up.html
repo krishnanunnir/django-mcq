@@ -7,5 +7,13 @@
     {{form_department.as_p}}
     <button type="submit" class="signup btn btn-default">Signup</button>
   </form>
+  {% if error %}
+  <p> There was an error</p>
+  {%for i in error %}
+  <ul>
+    <li>{{i}}</li>
+  </ul>
+  {% endfor %}
+  {%endif%}
 </body>
 </html>

@@ -12,6 +12,8 @@ class Department(models.Model):
 class Student(models.Model):
     user = models.OneToOneField( User,on_delete = models.CASCADE )
     department = models.ForeignKey(Department);
+    def __str__(self):
+        return "%s" % self.user.first_name
 
 class Testscore(models.Model):
     student = models.ForeignKey(Student)
