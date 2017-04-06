@@ -17,12 +17,16 @@ from django.contrib import admin
 from mcqfoss.views import *
 from exam.views import *
 from authentication.views import *
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$',hello),
     url(r'^currenttime/(\d+)/$',current_time),
     url(r'^$',tests),
     url(r'^tests/(\w+)/(\d+)$',test_display),
-    url(r'^signup/$',signup)
+    url(r'^signup/$',signup),
+    url(r'^login/$',log_in)
+
 
 ]

@@ -24,3 +24,7 @@ class StudentDepartmentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ('department',)
+
+class Login(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput())

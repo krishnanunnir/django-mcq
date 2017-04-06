@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .forms import *
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
 # Create your views here.
 def signup( request ):
     error =[]
@@ -24,3 +26,23 @@ def signup( request ):
     else:
 
         return render(request,'sign_up.html',{'form':form,'form_department':form_department,'error':error})
+
+def log_in(request):
+    form = Login()
+    error = []
+    if request.method == "POST":
+        post_value = request.POST
+        username = post_value['username']
+        password = post_value['password']
+        user = authenticate(username = username,password = password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('/tests/')
+            else:
+                error.append("User account is disabled")
+        else:
+            error.append("Invalid username or password")
+        return render(request,'login.html',{'form':form,'error':error})
+    else:
+        return render(request,'login.html',{'form':form,'error':error})
