@@ -3,7 +3,7 @@ from .forms import *
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 # Create your views here.
 def signup( request ):
     error =[]
@@ -28,21 +28,38 @@ def signup( request ):
         return render(request,'sign_up.html',{'form':form,'form_department':form_department,'error':error})
 
 def log_in(request):
-    form = Login()
-    error = []
-    if request.method == "POST":
-        post_value = request.POST
-        username = post_value['username']
-        password = post_value['password']
-        user = authenticate(username = username,password = password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('/tests/')
+    if  not request.user.is_authenticated():
+        form = Login()
+        error = []
+        if request.method == "POST":
+            post_value = request.POST
+            username = post_value['username']
+            password = post_value['password']
+            user = authenticate(username = username,password = password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('/current_user')
+                else:
+                    error.append("User account is disabled")
             else:
-                error.append("User account is disabled")
+                error.append("Invalid username or password")
+            return render(request,'login.html',{'form':form,'error':error})
         else:
-            error.append("Invalid username or password")
-        return render(request,'login.html',{'form':form,'error':error})
+            return render(request,'login.html',{'form':form,'error':error})
     else:
-        return render(request,'login.html',{'form':form,'error':error})
+        return redirect('/')
+
+def current_user(request):
+    if request.user.is_authenticated():
+        user = request.user
+        return render(request,'current_user.html',{'user':user})
+    else:
+        return redirect('/login/')
+
+def logout_view(request):
+    if request.user.is_authenticated():
+        logout(request)
+        return redirect('/login/')
+    else:
+        return redirect('/')

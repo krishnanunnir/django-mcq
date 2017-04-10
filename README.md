@@ -64,3 +64,4 @@ Using an sqlite for development.
 * Another model class for defining departments.
 * Another model class for storing test scores.
 * The newly created model classes have been registered at admin.py.
+* @login_required not working.

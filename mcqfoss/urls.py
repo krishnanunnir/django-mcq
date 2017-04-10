@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^$',tests),
     url(r'^tests/(\w+)/(\d+)$',test_display),
     url(r'^signup/$',signup),
-    url(r'^login/$',log_in)
-
-
+    url(r'^login/$',log_in),
+    url(r'^logout/$',logout_view),
+    url(r'^current_user/$',current_user),
 ]
