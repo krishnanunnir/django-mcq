@@ -43,10 +43,10 @@
           {% for question in test_item %}
     				<p id="question"><em>{{question.question_no}}.{{question.question_text}}</em></p>
 						<div id = "option">
-    					&nbsp&nbsp<input type="radio" name="options" value="{{question.option_one}}">{{question.option_one}}<br>
-    					&nbsp&nbsp<input type="radio" name="options" value="{{question.option_two}}">{{question.option_two}}<br>
-    					&nbsp&nbsp<input type="radio" name="options" value="{{question.option_three}}">{{question.option_three}}<br>
-    					&nbsp&nbsp<input type="radio" name="options" value="{{question.option_four}}">{{question.option_four}}<br><br>
+    					1.&nbsp<input type="radio" name="options" value="1"> {{question.option_one}}<br>
+    					2.&nbsp<input type="radio" name="options" value="2"> {{question.option_two}}<br>
+    					3.&nbsp<input type="radio" name="options" value="3"> {{question.option_three}}<br>
+    					4.&nbsp<input type="radio" name="options" value="4"> {{question.option_four}}<br><br>
 						</div>
 					</div>
 			</div>

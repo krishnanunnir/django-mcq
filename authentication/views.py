@@ -48,7 +48,7 @@ def log_in(request):
         else:
             return render(request,'login.html',{'form':form,'error':error})
     else:
-        return redirect('/')
+        return redirect('/current_user')
 
 def current_user(request):
     if request.user.is_authenticated():
@@ -62,4 +62,4 @@ def logout_view(request):
         logout(request)
         return redirect('/login/')
     else:
-        return redirect('/')
+        return redirect('/login/')
