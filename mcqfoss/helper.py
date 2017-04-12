@@ -41,3 +41,12 @@ def date_check( date_point ):
         return 1
     else:
         return 0
+
+def check_valid(start_time,end_time,date):
+    if  date_check( date ) == 1 or date_check( date ) == -1:
+        return "The test is set for %s" % date
+    else:
+        if time_check( start_time ) == 1 and time_check( end_time ) == -1:
+            return None
+        else:
+            return "The test is not accessible as it is set for %s to %s" % (start_time,end_time)

@@ -30,7 +30,11 @@ def test_display(request,test_url,question_number):
             return render(request,'post_check.html',{'post_items':request.POST.items()})
         else:
             first_filter = Test.objects.filter(test_title = test_url)
-            test_item = first_filter[0].questions.filter(question_no = question_number)
-            return render(request,'question_page.html',{'test_item':test_item})
+            test_item = first_filter[0].questions.filter(question_no = question_number) #Convert from filter to get
+            invalid_message = check_valid( first_filter[0].start_time,first_filter[0].end_time,first_filter[0].date_of_exam )
+            if invalid_message is None:
+                return render(request,'question_page.html',{'test_item':test_item})
+            else:
+                return HttpResponse( invalid_message ) #Replace HttpResponse with a function to use it
     else:
         return redirect('/login/')
