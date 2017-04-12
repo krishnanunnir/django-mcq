@@ -4,12 +4,14 @@ from django.http import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth import logout
+from authentication.models import *
 # Create your views here.
 
 
 def tests(request):
     if  request.user.is_authenticated():
-        test_items = Test.objects.all();
+        user = Student.objects.filter( username = request.user.name )
+        test_items = Test.objects.all(department = user.department );
         return render(request, 'tests.html', {'test_items': test_items})
     else:
             return redirect('/login/')
