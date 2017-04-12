@@ -5,13 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from authentication.models import *
+from mcqfoss.helper import *
+
 # Create your views here.
 
 
 def tests(request):
     if  request.user.is_authenticated():
-        user = Student.objects.filter( username = request.user.name )
-        test_items = Test.objects.all(department = user.department );
+        user = Student.objects.get( user__username = request.user.username )
+        test_items = Test.objects.filter( permitted_for = user.department)
         return render(request, 'tests.html', {'test_items': test_items})
     else:
             return redirect('/login/')
@@ -20,7 +22,10 @@ def tests(request):
 
 
 def test_display(request,test_url,question_number):
+    #test_athentication is a user defined helper in mcqfoss/helper.py
     if request.user.is_authenticated():
+        if not test_authentication(request.user,test_url):
+            return HttpResponse("You don't have permission to access this test")
         if request.method == 'POST':
             return render(request,'post_check.html',{'post_items':request.POST.items()})
         else:

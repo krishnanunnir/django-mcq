@@ -10,12 +10,13 @@ class Department(models.Model):
 
 
 class Student(models.Model):
-    user = models.OneToOneField( User,on_delete = models.CASCADE )
+    user = models.OneToOneField( User,on_delete = models.CASCADE,related_name ='student' )
     department = models.ForeignKey(Department);
     def __str__(self):
-        return "%s" % self.user.first_name
+        return "%s" % self.user.username
 
 class Testscore(models.Model):
     student = models.ForeignKey(Student)
     test = models.ForeignKey( 'exam.Test' )
     test_score = models.IntegerField()
+    attempted  = models.BooleanField(default = True)

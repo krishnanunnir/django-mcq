@@ -43,9 +43,9 @@ Using an sqlite for development.
 
 ## Testscore
 
-|  student  |   test   | test_score|
-|-----------|----------|-----------|
-| ForeignKey|ForeignKey| Integer   |
+|  student  |   test   | test_score| attempted |
+|-----------|----------|-----------|-----------|
+| ForeignKey|ForeignKey| Integer   |  Boolean  |
 
 
 * Migrated the data to database.
@@ -64,4 +64,9 @@ Using an sqlite for development.
 * Another model class for defining departments.
 * Another model class for storing test scores.
 * The newly created model classes have been registered at admin.py.
+
+*  Added April 8-13th 2017
+
 * @login_required not working.
+* Added a helper  function test_authentication in mcqfoss/helper.py
+* Checks if user have permission to access to test
