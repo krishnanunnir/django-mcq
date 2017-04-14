@@ -14,7 +14,7 @@ class Question(models.Model):
     option_four = models.CharField(max_length=200,blank=True, null=True)
     option_five = models.CharField(max_length=200,blank=True, null=True)
     def __str__(self):
-        return "%s" % self.question_no
+        return "%s.%s" % (self.question_no,self.question_text)
 
 
 class Test(models.Model):
@@ -26,3 +26,5 @@ class Test(models.Model):
     max_score = models.IntegerField(blank=True, null=True)
     permitted_for = models.ForeignKey( 'authentication.Department',default = 0)
     questions = models.ManyToManyField(Question,blank=True, null=True)
+    def __str__(self):
+        return "%s" % (self.test_title)

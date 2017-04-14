@@ -13,7 +13,7 @@ from mcqfoss.helper import *
 def tests(request):
     if  request.user.is_authenticated():
         user = Student.objects.get( user__username = request.user.username )
-        test_items = Test.objects.filter( permitted_for = user.department)
+        test_items = Test.objects.filter( permitted_for = user.department  )
         return render(request, 'tests.html', {'test_items': test_items})
     else:
             return redirect('/login/')
@@ -27,7 +27,21 @@ def test_display(request,test_url,question_number):
         if not test_authentication(request.user,test_url):
             return HttpResponse("You don't have permission to access this test")
         if request.method == 'POST':
-            return render(request,'post_check.html',{'post_items':request.POST.items()})
+            test = Test.objects.get(test_title = test_url )
+            user = request.user
+            student = Student.objects.get(user = user)
+            question_item = Test.questions.get(question_no = question_no)
+            if question_item.answer == request.post['options']:
+                #switch to the much more efficient update_or_create
+                try:
+                    test_score_item = Testscore.objects.get(student =student,test = test)
+                    test_score_item.test_score = test_score_item.test_score+1
+                    test_score_item.save()
+                except Testscore.DoesNotExist:
+                    test_score_create = Testscore.objects.create(user = user,test =  test,test_score = 1,attempted = True)
+            question_number_next = question_number+1
+            next_question = "/tests/" + str(test_url)+"/" + str(question_number_next) + "/"
+            return shortcut(next_question)
         else:
             first_filter = Test.objects.filter(test_title = test_url)
             test_item = first_filter[0].questions.filter(question_no = question_number) #Convert from filter to get

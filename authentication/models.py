@@ -18,5 +18,7 @@ class Student(models.Model):
 class Testscore(models.Model):
     student = models.ForeignKey(Student)
     test = models.ForeignKey( 'exam.Test' )
-    test_score = models.IntegerField()
-    attempted  = models.BooleanField(default = True)
+    test_score = models.IntegerField(default = 0)
+    attempted  = models.BooleanField(default = False)
+    def __str__(self):
+        return "%s %s"% (self.student.user.username,self.test.test_title)
