@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import logout
 from authentication.models import *
 from mcqfoss.helper import *
-
+from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -16,7 +16,7 @@ def tests(request):
         test_items = Test.objects.filter( permitted_for = user.department  )
         return render(request, 'tests.html', {'test_items': test_items})
     else:
-            return redirect('/login/')
+        return redirect('/login/')
 
 
 
@@ -28,13 +28,31 @@ def test_display(request,test_url):
             return HttpResponse("You don't have permission to access this test")
         if request.method == 'POST':
             answer_values={}
-            result={}
+            question_dictionary={}
+            remark={}
+            score={}
+            test_score=0
             test = Test.objects.get(test_title = test_url )
+            maximum_score=test.max_score
             user = request.user
             student = Student.objects.get(user = user)
             answer_values=cleaned_post(request.POST)
-
-            return render(request,'post_check.html',{'post_items':answer_values})
+            for question,answer in answer_values.items():
+                selected_question = Test.objects.get(test_title = test_url).questions.get(question_no=question)
+                question_dictionary[question]=selected_question.question_text
+                if(answer==selected_question.answer):
+                    remark[question]="Correct"
+                    score[question]="+1"
+                    test_score+=1
+                elif(answer!=selected_question.answer):
+                    remark[question]="Wrong"
+                    score[question]="+0"
+                else:
+                    remark[question]="Not attempted"
+                    score[question]="+0"
+            percentage = (  100.0*test_score)/maximum_score
+            list_question = zip(answer_values.iterkeys(),answer_values.itervalues(),question_dictionary.itervalues(),remark.itervalues(),score.itervalues())
+            return render(request,'post_check.html',{'list_question':list_question,'test_score':test_score,'max_score':maximum_score,'percentage':percentage})
         else:
             first_filter = Test.objects.get(test_title = test_url)
             test_item = first_filter.questions.all()

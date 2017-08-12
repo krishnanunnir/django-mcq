@@ -1,4 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table,th,td{
+            border: 1px solid black;
+            padding: 15px;
+            border-collapse: collapse;
+        }
 
-{% for key,value in post_items.items%}
-<p>Question:{{key}}Answer:{{ value}}</p>
-{%endfor%}
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Q No</th>
+        <th>Question </th>
+        <th>Answer</th>
+        <th>Remark</th>
+        <th>Score</th>
+    </tr>
+    {% for template_question_no,template_chosen_answer, template_question_text,template_remark,template_score in list_question %}
+
+        <tr>
+            <td>{{template_question_no}}</td>
+            <td>{{template_question_text}}</td>
+            <td>{{template_chosen_answer}}</td>
+            <td>{{template_remark}}</td>
+            <td>{{template_score}}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+<h3>Score: {{test_score}}/{{max_score}}</h3>
+
+<h3>Percentage:{{percentage }}%</h3>
+</body>
+</html>
