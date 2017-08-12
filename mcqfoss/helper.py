@@ -50,3 +50,11 @@ def check_valid(start_time,end_time,date):
             return None
         else:
             return "The test is not accessible as it is set for %s to %s" % (start_time,end_time)
+def cleaned_post(post_item):
+    answer_values={}
+    for question_no,radio_answer in post_item.items():
+        if 'csrf' in question_no:
+            continue
+        else:
+            answer_values[question_no]=radio_answer
+    return answer_values

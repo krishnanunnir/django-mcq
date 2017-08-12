@@ -1,4 +1,4 @@
 
-{% for key, value in post_items %}
-    p<p>{{key}}:{{value}}</p>
-{% endfor %}
+{% for key,value in post_items.items%}
+<p>Question:{{key}}Answer:{{ value}}</p>
+{%endfor%}
