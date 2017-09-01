@@ -20,13 +20,13 @@ from authentication.views import *
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    url(r'^$',home),
     url(r'^login/$',log_in),
-    url(r'^tests/$',tests),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^hello/$',hello),
     url(r'^currenttime/(\d+)/$',current_time),
     url(r'^tests/(\w+)/$',test_display),
     url(r'^signup/$',signup),
     url(r'^logout/$',logout_view),
     url(r'^current_user/$',current_user),
+    url(r'^score/(\w+)/$',display_scores),
 ]

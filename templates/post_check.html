@@ -9,8 +9,11 @@
         }
 
     </style>
+
 </head>
 <body>
+    <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
+    <h3>RollNo: {{user.username}}</h3>
 <table>
     <tr>
         <th>Q No</th>
@@ -31,8 +34,13 @@
 
     {% endfor %}
 </table>
-<h3>Score: {{test_score}}/{{max_score}}</h3>
+<h4>Score: {{test_score}}/{{max_score}}</h4>
 
-<h3>Percentage:{{percentage }}%</h3>
+<h4>Percentage:{{percentage }}%</h4>
+
+
+<a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="page.html">Download</a>
+
+
 </body>
 </html>

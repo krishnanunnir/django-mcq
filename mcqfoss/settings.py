@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'exam',
     'authentication',
-    'mathfilters',
 )
 
 MIDDLEWARE_CLASSES = (

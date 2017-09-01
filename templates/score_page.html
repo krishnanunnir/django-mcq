@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{test_name}} | Scores </title>
+    <style>
+        table,th,td{
+            border: 1px solid black;
+            padding: 15px;
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+<body>
+<h1>{{test_name}}</h1>
+<table>
+    <tr>
+        <th>RollNo</th>
+        <th>Score<br>({{maximum_score}})</th>
+    </tr>
+    {% for test_item in test_scores %}
+    <tr>
+        <td>{{test_item.student}}</td><td>{{test_item.test_score}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="page.html">Download</a>
+
+
+</body>
+</html>
