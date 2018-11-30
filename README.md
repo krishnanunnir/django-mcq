@@ -13,4 +13,4 @@ Using sqlite database for development.
 Secret Key should be stored and imported from the ```secret.py``` directory defined in root of the directory.  
 The database ```db.sqlite3``` is used by default. The database setting can be changed by setting the ```database.py``` file at the root. 
 
-For further documentation refer the documentation.md file.
+For further more information see the [documentation](docs/documentation.md).
