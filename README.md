@@ -10,7 +10,7 @@ Python 2.7 has been used for the project. A virtualenv with python2.7 installati
  pip install -r requirements.txt   
 ```
 Using sqlite database for development.  
-Database settings have to be defined in a file database.py defined in the root of the directory.  
-Secret Key should be stored and imported from the secret.py directory defined in root of the directory.  
+Secret Key should be stored and imported from the ```secret.py``` directory defined in root of the directory.  
+The database ```db.sqlite3``` is used by default. The database setting can be changed by setting the ```database.py``` file at the root. 
 
 For further documentation refer the documentation.md file.
